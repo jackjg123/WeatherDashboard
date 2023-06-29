@@ -11,15 +11,43 @@ function getCity() {
       apiKey
   )
     .then(function (response) {
+      console.log(response);
+      if (!response.ok) {
+        throw Error('ERROR');
+      }
       return response.json();
     })
+
     .then(function (data) {
-      console.log('Hello \n----------');
       console.log(data);
-      // TODO: Loop through the response
-      for (var i = 0; i < data.length; i++) {
-        console.log(data[i].name);
-      }
+      var lat = data.map(function (lat) {
+        return lat.lat;
+      });
+      console.log(lat);
+      // .catch(function (error) {
+      //   console.log(error);
     });
+  //       fetch(
+  //         'https://api.openweathermap.org/data/2.5/weather?lat=' +
+  //           data +
+  //           '&lon=' +
+  //           data +
+  //           '&appid=' +
+  //           apiKey
+  //       ).then(function (response) {
+  //         return response.json();
+  //       });
+  //     });
+  // }
 }
-$('#search-btn').on('click', getCity);
+// function addCity() {
+//   var city = $('#search').val();
+//   if (city === '') {
+//     return;
+//   }
+// }
+
+$('#search-btn').click(function () {
+  getCity();
+  // addCity();
+});
