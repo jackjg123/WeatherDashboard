@@ -1,18 +1,25 @@
-var requestUrl =
-  'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={d7e7d0df3f902bbad2a3160eb8ce4406}';
+var apiKey = '9a1b090bc27ef67eb6c614a9437ffe80';
 
-fetch(requestUrl)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    console.log(data);
-  });
+//Function retrieves lon and lat coordinates from the geo locater openweather api.
+function getCity() {
+  var city = $('#search').val();
 
-// fetch(badRequestUrl)
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data);
-//   });
+  fetch(
+    'http://api.openweathermap.org/geo/1.0/direct?q=' +
+      city +
+      '&limit=5&appid=' +
+      apiKey
+  )
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log('Hello \n----------');
+      console.log(data);
+      // TODO: Loop through the response
+      for (var i = 0; i < data.length; i++) {
+        console.log(data[i].name);
+      }
+    });
+}
+$('#search-btn').on('click', getCity);
