@@ -14,9 +14,9 @@ function getCity() {
     //check for valid lat and lon
     .then(function (response) {
       console.log(response);
-      if (!response.ok) {
-        throw Error('ERROR');
-      }
+      // if (!response.ok) {
+      //   throw Error('ERROR');
+      // }
       return response.json();
     })
 
@@ -43,7 +43,7 @@ function getCity() {
         });
     });
 }
-//takes weather data and displays it on screen
+//retrieve openweather data for the current day and display it on screen
 function updateWeatherData(data) {
   var cityName = data.name;
 
@@ -51,7 +51,7 @@ function updateWeatherData(data) {
   var currentDate = new Date(data.dt * 1000);
   var kelvinTemperature = data.main.temp;
 
-  //convert kelvin temp to farenheit and round to nearest tenth
+  //convert kelvin temp to Fahrenheit and round to nearest tenth
   var temperature = Math.floor(kelvinTemperature - 273) * (9 / 5) + 32;
   temperature = temperature.toFixed(1);
 
@@ -73,6 +73,82 @@ function updateWeatherData(data) {
   $('#current-city p:nth-of-type(3)').text('Humidity: ' + humidity + '%');
 }
 
+// Make a function that gets the lat and lon and puts them into the 5 day weather api.
+function getFiveDayWeather() {
+  var city = $('#search').val();
+  console.log('City: ' + city);
+  //Get lat and lon of city.
+  fetch(
+    'http://api.openweathermap.org/geo/1.0/direct?q=' +
+      city +
+      '&limit=5&appid=9a1b090bc27ef67eb6c614a9437ffe80'
+  )
+    //check for valid lat and lon
+    .then(function (response) {
+      console.log(response);
+      // if (!response.ok) {
+      //   throw Error('ERROR');
+      // }
+      return response.json();
+    })
+
+    //Pass lat and lon values to weather api
+    .then(function (data) {
+      var lat = data[0].lat;
+      var lon = data[0].lon;
+      console.log(lat, lon);
+      fetch(
+        'https://api.openweathermap.org/data/2.5/forecast?lat=' +
+          lat +
+          '&lon=' +
+          lon +
+          '&appid=9a1b090bc27ef67eb6c614a9437ffe80'
+      )
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          updateFiveDay(data);
+          showWeather();
+        });
+    });
+}
+
+function updateFiveDay(data) {
+  var forecastList = data.list;
+  $('#five-day-forecast').empty();
+  for (var i = 0; i < forecastList.length; i++) {
+    var forecastData = forecastList[i];
+    console.log(forecastData);
+    var forecastDate = new Date(forecastData.dt * 1000);
+    console.log(forecastDate);
+    var temperature = Math.floor(forecastData.main.temp - 273.15); // Convert temperature to Celsius
+    console.log(temperature);
+    var iconCode = forecastData.weather[0].icon;
+    console.log(iconCode);
+
+    // Create HTML elements for forecast data
+    var forecastItem = $('<div>').addClass('forecast-item');
+    console.log(forecastItem);
+    var forecastDateElement = $('<p>').text(forecastDate.toLocaleDateString());
+    console.log(forecastDateElement);
+    var forecastIcon = $('<img>').attr(
+      'src',
+      'https://openweathermap.org/img/w/' + iconCode + '.png'
+    );
+    console.log(forecastIcon);
+    var forecastTempElement = $('<p>').text('Temp: ' + temperature + '°C');
+    console.log(forecastTempElement);
+
+    // Append elements to the forecast item
+    forecastItem.append(forecastDateElement, forecastIcon, forecastTempElement);
+
+    // Append the forecast item to the forecast container
+    $('#five-day').append(forecastItem);
+  }
+}
+
 //Unhide the divs displaying the weather.
 function showWeather() {
   $('#current-city').css('display', 'block');
@@ -81,10 +157,12 @@ function showWeather() {
 
 $('#search-btn').click(function () {
   getCity();
+  getFiveDayWeather();
 });
 $('#search').keydown(function (event) {
   if (event.keyCode === 13) {
     getCity();
+    getFiveDayWeather();
     event.preventDefault();
   }
 });
