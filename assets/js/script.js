@@ -51,9 +51,9 @@ function updateWeatherData(data) {
   var currentDate = new Date(data.dt * 1000);
   var kelvinTemperature = data.main.temp;
 
-  //convert kelvin temp to Fahrenheit and round to nearest tenth
+  //convert kelvin temp to Fahrenheit and round to nearest hundredth
   var temperature = Math.floor(kelvinTemperature - 273) * (9 / 5) + 32;
-  temperature = temperature.toFixed(1);
+  temperature = temperature.toFixed(2);
 
   var windSpeed = data.wind.speed;
   var humidity = data.main.humidity;
@@ -67,7 +67,7 @@ function updateWeatherData(data) {
   console.log('   Humidity: ' + humidity + '%');
 
   // Display the values of the variables to the screen.
-  $('#current-city h3').text(cityName + '-' + currentDate);
+  $('#current-city h1').text(cityName + '-' + currentDate);
   $('#current-city p:nth-of-type(1)').text('Temp: ' + temperature + ' F');
   $('#current-city p:nth-of-type(2)').text('Wind speed: ' + windSpeed + ' Mph');
   $('#current-city p:nth-of-type(3)').text('Humidity: ' + humidity + '%');

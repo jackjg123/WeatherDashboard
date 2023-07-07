@@ -52,8 +52,8 @@
   max-width: 575px;
 }
 
-h2 {
-  max-width: 575px;
+#current-city {
+  margin-left: 20%;
 }
 
 @media screen and (max-width: 768px) {
@@ -66,5 +66,8 @@ h2 {
 @media screen and (max-width: 480px) {
   .forecast-item {
     width: 100%;
+  }
+  #current-city{
+    margin:auto;
   }
 }

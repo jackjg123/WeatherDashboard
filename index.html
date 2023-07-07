@@ -22,15 +22,17 @@
     <div class="row">
       <div  class=" col-lg-12 col-md-10 col-sm-10 m-1">
           <h3 class="display-4 text-white m-5 text-center " >Search for city</h3>
-          <input id="search" class="form-control shadow p-1 m-1 w-75 border border-white" type="search"  placeholder="Enter City Here">
-          <div><button id="search-btn" type="button" class="btn btn-primary w-75 text-white shadow p-1 bg-info rounded border border-white m-1">Search</button></div>
+          <div id="search-container">
+            <input id="search" class="form-control shadow p-1 m-1 w-75 border border-white" type="search"  placeholder="Enter City Here">
+            <button id="search-btn" type="button" class="btn btn-primary w-75 text-white shadow p-1 bg-info rounded border border-white m-1">Search</button>
+          </div>
       </div>
     
-      <div id="current-city" class="col-lg-7 col-md-4 col-sm-2" style="display: none">
-        <h3 class="display-2 text-white shadow p-1 mb-2 bg-info rounded border border-white" ></h3>
-        <p class="display-6 text-white shadow p-1 mb-2 bg-info rounded border border-white"></p>
-        <p class="display-6 text-white shadow p-1 mb-2 bg-info rounded border border-white"></p>
-        <p class="display-6 text-white shadow p-1 mb-2 bg-info rounded border border-white"></p>
+      <div id="current-city" class="display-2 text-white shadow p-1 mb-2 bg-info rounded border border-white col-lg-7 col-md-4 col-sm-2 text-center .center-div" style="display: none">
+        <h1 class="" ></h1>
+        <p class=""></p>
+        <p class=""></p>
+        <p class=""></p>
       </div>
     </div>
     <div id="five-day" class="row" >
