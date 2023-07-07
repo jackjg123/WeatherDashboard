@@ -117,32 +117,40 @@ function getFiveDayWeather() {
 
 function updateFiveDay(data) {
   var forecastList = data.list;
-  $('#five-day-forecast').empty();
-  for (var i = 0; i < forecastList.length; i++) {
+  $('#five-day').empty(); // Clear the existing forecast items
+
+  for (var i = 0; i < 5; i++) {
     var forecastData = forecastList[i];
-    console.log(forecastData);
     var forecastDate = new Date(forecastData.dt * 1000);
-    console.log(forecastDate);
-    var temperature = Math.floor(forecastData.main.temp - 273.15); // Convert temperature to Celsius
-    console.log(temperature);
+    var temperatureCelsius = Math.floor(forecastData.main.temp - 273.15);
+    var temperatureFahrenheit = (temperatureCelsius * 9) / 5 + 32;
     var iconCode = forecastData.weather[0].icon;
-    console.log(iconCode);
+    var windSpeed = forecastData.wind.speed;
+    var humidity = forecastData.main.humidity;
 
     // Create HTML elements for forecast data
     var forecastItem = $('<div>').addClass('forecast-item');
-    console.log(forecastItem);
     var forecastDateElement = $('<p>').text(forecastDate.toLocaleDateString());
-    console.log(forecastDateElement);
     var forecastIcon = $('<img>').attr(
       'src',
       'https://openweathermap.org/img/w/' + iconCode + '.png'
     );
-    console.log(forecastIcon);
-    var forecastTempElement = $('<p>').text('Temp: ' + temperature + '°C');
-    console.log(forecastTempElement);
+    var forecastTempElement = $('<p>').text(
+      'Temp: ' + temperatureFahrenheit + '°F'
+    );
+    var forecastWindElement = $('<p>').text(
+      'Wind Speed: ' + windSpeed + ' m/s'
+    );
+    var forecastHumidityElement = $('<p>').text('Humidity: ' + humidity + '%');
 
     // Append elements to the forecast item
-    forecastItem.append(forecastDateElement, forecastIcon, forecastTempElement);
+    forecastItem.append(
+      forecastDateElement,
+      forecastIcon,
+      forecastTempElement,
+      forecastWindElement,
+      forecastHumidityElement
+    );
 
     // Append the forecast item to the forecast container
     $('#five-day').append(forecastItem);

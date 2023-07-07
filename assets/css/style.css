@@ -2,6 +2,69 @@
   opacity: 0.60;
 }
 
-.btn {
-  margin-left: 0;
+#five-day {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.forecast-item {
+  width: calc(20% - 10px); /* Adjust the width as needed */
+  background-color: rgb(82, 240, 240);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.forecast-date {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.forecast-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.forecast-temp,
+.forecast-wind,
+.forecast-humidity {
+  margin-bottom: 5px;
+}
+#search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#search {
+  max-width: 575px; /* Adjust the width as needed */
+  padding: 10px;
+  font-size: 16px;
+}
+
+#search-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  max-width: 575px;
+}
+
+h2 {
+  max-width: 575px;
+}
+
+@media screen and (max-width: 768px) {
+  .forecast-item {
+    width: calc(50% - 20px);
+    margin:2px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .forecast-item {
+    width: 100%;
+  }
 }
