@@ -9,8 +9,8 @@
 </head>
 
 <!-- Create page margins with container and container-fluid. -->
-<body class="bg-info" >
-  <header class="container-fluid bg-info text-light mb-5">
+<body class="body" >
+  <header class="container-fluid bg-info text-light shadow shadow-lg mb-5 border-bottom border-dark">
     <nav class="row">
     <h1 class="col-lg-10 font-weight-bold" : >Weather Dashboard</h1>
     
@@ -20,15 +20,15 @@
 
   <section class="container-fluid">
     <div class="row">
-      <div  class=" col-lg-12 col-md-10 col-sm-10 m-1">
-          <h3 class="display-4 text-white m-5 text-center " >Search for city</h3>
+      <div class="col-lg-4 col-md-10 col-sm-10 m-1">
+          <h3 class="display-4 text-white m-5 text-center" >Search for city</h3>
           <div id="search-container">
-            <input id="search" class="form-control shadow p-1 m-1 w-75 border border-white" type="search"  placeholder="Enter City Here">
-            <button id="search-btn" type="button" class="btn btn-primary w-75 text-white shadow p-1 bg-info rounded border border-white m-1">Search</button>
+            <input id="search" class="form-control shadow shadow-sm p-1 m-1 w-75 border border-dark" type="search"  placeholder="Enter City Here">
+            <button id="search-btn" type="button" class="btn btn-primary w-75 text-white shadow p-1 bg-info rounded border border-dark m-1">Search</button>
           </div>
       </div>
     
-      <div id="current-city" class="display-2 text-white shadow p-1 mb-2 bg-info rounded border border-white col-lg-7 col-md-4 col-sm-2 text-center" style="display: none">
+      <div id="current-city" class="display-2 text-white shadow shadow-lg p-1 m-5 bg-info rounded border border-dark col-lg-112 col-md-4 col-sm-2 text-center" style="display: none">
         <h1 class="" ></h1>
         <p class=""></p>
         <p class=""></p>
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div id="five-day" class="row" >
-      <center>
+    
       <h3 class="text-center"></h3>
       <div class="row">
         <div id="1" class="col-lg-2 col-md-6 col-sm-12">
@@ -74,7 +74,7 @@
         <div>
         </div>
       </div> 
-      </center> 
+
     </div>
   </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
