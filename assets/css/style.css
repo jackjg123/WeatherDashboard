@@ -54,6 +54,7 @@
 
 #current-city {
   margin-left: 20%;
+  padding: 10%;
 }
 
 @media screen and (max-width: 768px) {

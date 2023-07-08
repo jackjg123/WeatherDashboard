@@ -6,7 +6,7 @@ function getCity() {
 
   //Get lat and lon of city.
   fetch(
-    'http://api.openweathermap.org/geo/1.0/direct?q=' +
+    'https://api.openweathermap.org/geo/1.0/direct?q=' +
       city +
       '&limit=5&appid=' +
       apiKey
@@ -79,7 +79,7 @@ function getFiveDayWeather() {
   console.log('City: ' + city);
   //Get lat and lon of city.
   fetch(
-    'http://api.openweathermap.org/geo/1.0/direct?q=' +
+    'https://api.openweathermap.org/geo/1.0/direct?q=' +
       city +
       '&limit=5&appid=9a1b090bc27ef67eb6c614a9437ffe80'
   )
@@ -119,7 +119,7 @@ function updateFiveDay(data) {
   var forecastList = data.list;
   $('#five-day').empty(); // Clear the existing forecast items
 
-  for (var i = 0; i < 5; i++) {
+  for (var i = 7; i < 49; i += 8) {
     var forecastData = forecastList[i];
     var forecastDate = new Date(forecastData.dt * 1000);
     var temperatureCelsius = Math.floor(forecastData.main.temp - 273.15);
